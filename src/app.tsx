@@ -1,16 +1,32 @@
-import { useState } from "preact/hooks";
+import { Item } from "./components/Item";
+
+// Example mockdata
+const items = [
+  {
+    id: "1",
+    label: "Using nicotine",
+  },
+  {
+    id: "2",
+    label: "Drinking alcohol",
+  },
+];
 
 export function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <h1>Time since</h1>
+      {items ? (
+        <ul>
+          {items.map(({ id, label }) => (
+            <li key={id}>
+              <Item label={label} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No items</p>
+      )}
     </>
   );
 }
